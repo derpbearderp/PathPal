@@ -1,51 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KorolJoystick } from "korol-joystick";
 
 export default function Controller() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      
+      <KorolJoystick style={styles.stickTop} color="#ffffff" radius={110} onMove={(data) => console.log(data.position.x)} />
+
+      <KorolJoystick style={styles.stickBottom} color="#ffffff" radius={110} onMove={(data) => console.log(data.position.y)} />
+
       <StatusBar style="auto" />
     </View>
   );
-
-//   requestBluetoothPermission = async () => {
-//     if (Platform.OS === 'ios') {
-//       return true
-//     }
-//     if (Platform.OS === 'android' && PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION) {
-//       const apiLevel = parseInt(Platform.Version.toString(), 10)
-  
-//       if (apiLevel < 31) {
-//         const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
-//         return granted === PermissionsAndroid.RESULTS.GRANTED
-//       }
-//     const result = await PermissionsAndroid.requestMultiple([
-//   PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
-//   PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT
-// ])
-
-// return (
-//   result['android.permission.BLUETOOTH_CONNECT'] === PermissionsAndroid.RESULTS.GRANTED &&
-//   result['android.permission.BLUETOOTH_SCAN'] === PermissionsAndroid.RESULTS.GRANTED
-// )
-//     }
-  
-//     this.showErrorToast('Permission have not been granted')
-  
-//     return false
-//   }
-
-
-
-
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#000000',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
+    stickTop: {
+        flex: 1,
+        backgroundColor: '#000000',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        margin: '100',
+      },
+
+      stickBottom: {
+        flex: 1,
+        backgroundColor: '#000000',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column-reverse',
+        margin: '100',
+      },
+  });
+
+
