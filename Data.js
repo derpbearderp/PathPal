@@ -1,106 +1,55 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Fijnstof from './Fijnstof';
+import Koolstof from './Koolstof';
+import Temperatuur from './zuurstof';
+import Asbest from './asbest';
 
 const DataScreen = () => {
-  // Sample data for the chart
-  const data = {
-    labels: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-    datasets: [
-      {
-        data: [12, 10, 11, 14, 10, 13, 12, 11],
-        color: (opacity = 1) => `lightgreen`, // Green color for primary line
-        strokeWidth: 4, // Width of the primary line
-      },
-      {
-        data: [12, 12, 12, 12, 12, 12, 12, 12],
-        color: (opacity = 1) => `lightblue`, // Blue color for secondary line
-        strokeWidth: 4, // Width of the secondary line
-      },
-    ],
+  const [activeComponent, setActiveComponent] = useState('Fijnstof');
+
+  const toggleComponent = () => {
+    switch (activeComponent) {
+      case 'Fijnstof':
+        setActiveComponent('Koolstof');
+        break;
+      case 'Koolstof':
+        setActiveComponent('Temperatuur');
+        break;
+      case 'Temperatuur':
+        setActiveComponent('Asbest');
+        break;
+      case 'Asbest':
+        setActiveComponent('Fijnstof');
+        break;
+      default:
+        setActiveComponent('Fijnstof');
+    }
   };
 
-  // State to manage dropdown visibility
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  // Dropdown items data
-  const dropdownItems = [
-    { title: 'Groen: schone lucht', description: 'Geen kans op brand in huis en geen gevaarlijke stoffen', color: 'green' },
-    { title: 'Oranje: gevaarlijk', description: 'Open de ramen voor genoeg zuurstof, Er is een kans op brand en gevaarlijke stoffen', color: 'orange' },
-    { title: 'Rood: noodgeval', description: 'PathPal wordt geactiveerd en een melding wordt doorgegeven', color: 'red' },
-  ];
-
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const renderActiveComponent = () => {
+    switch (activeComponent) {
+      case 'Fijnstof':
+        return <Fijnstof />;
+      case 'Koolstof':
+        return <Koolstof />;
+      case 'Temperatuur':
+        return <Temperatuur />;
+      case 'Asbest':
+        return <Asbest />;
+      default:
+        return <Fijnstof />;
+    }
   };
-
-  // Determine which icon to show based on dropdown visibility
-  const dropdownIcon = dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline';
 
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Fijnstof</Text>
-        <LineChart
-          data={data}
-          width={320} // Adjusted width to fit within the card
-          height={220}
-          chartConfig={{
-            backgroundColor: '#ffffff',
-            backgroundGradientFrom: '#ffffff',
-            backgroundGradientTo: '#ffffff',
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-          }}
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
-          withDots={false}
-        />
+      <View style={styles.componentContainer}>
+        {renderActiveComponent()}
       </View>
-
-      <View style={styles.bottomContainer}>
-        <View style={styles.circleContainer}>
-          <View style={[styles.circle, { backgroundColor: 'lightgreen' }]} />
-          <Text style={styles.circleText}>Meting</Text>
-        </View>
-        <View style={styles.circleContainer}>
-          <View style={[styles.circle, { backgroundColor: 'lightblue' }]} />
-          <Text style={styles.circleText}>Gemiddelde</Text>
-        </View>
-      </View>
-
-      {/* New card */}
-      <View style={styles.newCard}>
-        <Text style={styles.newCardText}>
-          <Text style={{ color: 'lightgreen' }}>Meting</Text> - schone lucht
-        </Text>
-      </View>
-
-      {/* Dropdown menu */}
-      <View style={[styles.dropdown, dropdownVisible && styles.dropdownActive]}>
-        <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownHeader}>
-          <Text style={styles.dropdownHeaderText}>fijnstof</Text>
-          <Ionicons name={dropdownIcon} size={24} color="#000" style={{ marginLeft: 5 }} />
-        </TouchableOpacity>
-        {dropdownVisible && (
-          <ScrollView style={styles.dropdownItems}>
-            {dropdownItems.map((item, index) => (
-              <TouchableOpacity key={index} style={styles.dropdownItem}>
-                <Text style={[styles.dropdownTitle, { color: item.color }]}>{item.title}</Text>
-                <Text style={styles.dropdownDescription}>{item.description}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        )}
-      </View>
+      <TouchableOpacity style={styles.button} onPress={toggleComponent}>
+        <Text style={styles.buttonText}>{'>'}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -108,105 +57,32 @@ const DataScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff', // White background
-    paddingTop: 50, // Padding top to move content down
-    paddingLeft: 20, // Padding left to align content to the left
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
-  card: {
-    width: '90%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 20, // Add margin bottom for spacing
+  componentContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  button: {
+    position: 'absolute',
+    top: 20, // Adjust bottom position as needed
+   
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 5,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4, // Increased height of shadow offset
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
     elevation: 5,
   },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20,
-  },
-  circleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  circle: {
-    width: 20,
-    height: 20,
-    borderRadius: 15,
-    backgroundColor: 'transparent',
-  },
-  circleText: {
-    marginLeft: 10,
-    textAlign: 'left',
-    fontSize: 12,
-  },
-  newCard: {
-    width: '90%',
-    backgroundColor: '#000',
-    borderRadius: 10,
-    padding: 16,
-    marginBottom: 20,
-    marginTop: 10, // Adjusted marginTop for pushing the card down
-  },
-  newCardText: {
-    color: '#fff',
+  buttonText: {
+    color: 'blue',
     fontSize: 16,
-    textAlign: 'center',
-  },
-  dropdown: {
-    marginTop: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    width: '90%',
-  },
-  dropdownActive: {
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  dropdownHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  dropdownHeaderText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  dropdownItems: {
-    maxHeight: 150, // Adjust height as needed
-    paddingHorizontal: 16,
-  },
-  dropdownItem: {
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  dropdownTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  dropdownDescription: {
-    fontSize: 14,
-    color: '#888',
   },
 });
 

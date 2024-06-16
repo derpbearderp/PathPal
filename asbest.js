@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { LineChart } from 'react-native-chart-kit';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const DataScreen = () => {
+const Asbest = () => {
   // Sample data for the chart
   const data = {
     labels: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
     datasets: [
       {
         data: [10, 11, 11, 10, 13, 11, 14, 10],
-        color: (opacity = 1) => `lightgreen`, // Green color for primary line
+        color: (opacity = 1) => `orange`, // Green color for primary line
         strokeWidth: 4, // Width of the primary line
       },
       {
@@ -43,6 +43,11 @@ const DataScreen = () => {
     <View style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Asbest</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.vandaagText}>vandaag</Text>
+          <Text style={styles.pmText}>Mg3SI2O5(OH)4</Text>
+          <Text style={styles.valueText}>^ 4.6</Text>
+        </View>
         <LineChart
           data={data}
           width={320} // Adjusted width to fit within the card
@@ -61,6 +66,7 @@ const DataScreen = () => {
           style={{
             marginVertical: 8,
             borderRadius: 16,
+            marginLeft: 20, 
           }}
           withDots={false}
         />
@@ -110,10 +116,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff', // White background
     paddingTop: 50, // Padding top to move content down
-    paddingLeft: 20, // Padding left to align content to the left
+    paddingLeft: 10, // Padding left to align content to the left
   },
   card: {
-    width: '90%',
+    width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 16,
@@ -126,6 +132,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 6,
     elevation: 5,
+    position: 'relative', // Make the card container position relative
+  },
+  textContainer: {
+    position: 'absolute', // Position the text container absolutely within the card
+    top: 16, // Adjust the position as needed
+    left: 16,
+  },
+  vandaagText: {
+    color: 'gray',
+    fontSize: 14,
+  },
+  pmText: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  valueText: {
+    color: 'orange',
+    fontSize: 16,
   },
   cardTitle: {
     fontSize: 20,
@@ -159,6 +184,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 16,
     marginBottom: 20,
+    marginLeft: 10,
     marginTop: 10, // Adjusted marginTop for pushing the card down
   },
   newCardText: {
@@ -167,6 +193,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   dropdown: {
+    marginLeft: 10,
     marginTop: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
@@ -210,4 +237,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DataScreen;
+export default Asbest;
