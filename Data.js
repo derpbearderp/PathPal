@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Fijnstof from './Fijnstof';
 import Koolstof from './Koolstof';
-import Temperatuur from './zuurstof';
+import Temperatuur from './temperatuur';
 import Asbest from './asbest';
 
 const DataScreen = () => {
