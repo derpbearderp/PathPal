@@ -4,7 +4,7 @@ import { LineChart } from 'react-native-chart-kit';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Fijnstof = () => {
-  // Sample data for the chart
+  
   const data = {
     labels: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
     datasets: [
@@ -21,22 +21,21 @@ const Fijnstof = () => {
     ],
   };
 
-  // State to manage dropdown visibility
+
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  // Dropdown items data
+
   const dropdownItems = [
     { title: 'Groen: schone lucht', description: 'Geen kans op brand in huis en geen gevaarlijke stoffen', color: 'green' },
     { title: 'Oranje: gevaarlijk', description: 'Open de ramen voor genoeg zuurstof, Er is een kans op brand en gevaarlijke stoffen', color: 'orange' },
     { title: 'Rood: noodgeval', description: 'PathPal wordt geactiveerd en een melding wordt doorgegeven', color: 'red' },
   ];
 
-  // Function to toggle dropdown visibility
+
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  // Determine which icon to show based on dropdown visibility
   const dropdownIcon = dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline';
 
   return (
