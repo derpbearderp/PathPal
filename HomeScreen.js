@@ -16,7 +16,7 @@ const chartConfig = {
   backgroundGradientTo: "#08130D",
   backgroundGradientToOpacity: 0.5,
   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
+  strokeWidth: 2, 
   barPercentage: 0.5,
   useShadowColorFromDataset: false // optional
 };
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   icons: {
     flexDirection: 'row',
-    // Add styling for your icons
+  
   },
   controller: {
     alignItems: 'center',
