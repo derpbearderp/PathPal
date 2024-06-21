@@ -4,39 +4,39 @@ import { LineChart } from 'react-native-chart-kit';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Asbest = () => {
-  // Sample data for the chart
+ 
   const data = {
     labels: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
     datasets: [
       {
         data: [10, 11, 11, 10, 13, 11, 14, 10],
-        color: (opacity = 1) => `orange`, // Green color for primary line
-        strokeWidth: 4, // Width of the primary line
+        color: (opacity = 1) => `orange`,
+        strokeWidth: 4, 
       },
       {
         data: [12, 12, 12, 12, 12, 12, 12, 12],
-        color: (opacity = 1) => `lightblue`, // Blue color for secondary line
-        strokeWidth: 4, // Width of the secondary line
+        color: (opacity = 1) => `lightblue`, 
+        strokeWidth: 4, 
       },
     ],
   };
 
-  // State to manage dropdown visibility
+  
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  // Dropdown items data
+  
   const dropdownItems = [
     { title: 'Groen: schone lucht', description: 'Geen kans op brand in huis en geen gevaarlijke stoffen', color: 'green' },
     { title: 'Oranje: gevaarlijk', description: 'Open de ramen voor genoeg zuurstof, Er is een kans op brand en gevaarlijke stoffen', color: 'orange' },
     { title: 'Rood: noodgeval', description: 'PathPal wordt geactiveerd en een melding wordt doorgegeven', color: 'red' },
   ];
 
-  // Function to toggle dropdown visibility
+ 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  // Determine which icon to show based on dropdown visibility
+  
   const dropdownIcon = dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline';
 
   return (
@@ -50,7 +50,7 @@ const Asbest = () => {
         </View>
         <LineChart
           data={data}
-          width={320} // Adjusted width to fit within the card
+          width={320} 
           height={220}
           chartConfig={{
             backgroundColor: '#ffffff',
@@ -114,29 +114,29 @@ const Asbest = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff', // White background
-    paddingTop: 50, // Padding top to move content down
-    paddingLeft: 10, // Padding left to align content to the left
+    backgroundColor: '#ffffff', 
+    paddingTop: 50, 
+    paddingLeft: 10,
   },
   card: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 16,
-    marginBottom: 20, // Add margin bottom for spacing
+    marginBottom: 20, 
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 4, // Increased height of shadow offset
+      height: 4, 
     },
     shadowOpacity: 0.4,
     shadowRadius: 6,
     elevation: 5,
-    position: 'relative', // Make the card container position relative
+    position: 'relative', 
   },
   textContainer: {
-    position: 'absolute', // Position the text container absolutely within the card
-    top: 16, // Adjust the position as needed
+    position: 'absolute', 
+    top: 16, 
     left: 16,
   },
   vandaagText: {
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 20,
     marginLeft: 10,
-    marginTop: 10, // Adjusted marginTop for pushing the card down
+    marginTop: 10, 
   },
   newCardText: {
     color: '#fff',
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   dropdownItems: {
-    maxHeight: 150, // Adjust height as needed
+    maxHeight: 150, 
     paddingHorizontal: 16,
   },
   dropdownItem: {
