@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    top: 20, // Adjust bottom position as needed
+    top: 20, 
    
     padding: 10,
     backgroundColor: 'white',
