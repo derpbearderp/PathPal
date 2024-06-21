@@ -10,13 +10,13 @@ const Fijnstof = () => {
     datasets: [
       {
         data: [12, 10, 11, 14, 10, 13, 12, 11],
-        color: (opacity = 1) => `lightgreen`, // Green color for primary line
-        strokeWidth: 4, // Width of the primary line
+        color: (opacity = 1) => `lightgreen`, 
+        strokeWidth: 4,
       },
       {
         data: [12, 12, 12, 12, 12, 12, 12, 12],
-        color: (opacity = 1) => `lightblue`, // Blue color for secondary line
-        strokeWidth: 4, // Width of the secondary line
+        color: (opacity = 1) => `lightblue`, 
+        strokeWidth: 4, 
       },
     ],
   };
@@ -50,7 +50,7 @@ const Fijnstof = () => {
         </View>
         <LineChart
           data={data}
-          width={320} // Adjusted width to fit within the card
+          width={320} 
           height={220}
           chartConfig={{
             backgroundColor: '#ffffff',
@@ -114,29 +114,29 @@ const Fijnstof = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff', // White background
-    paddingTop: 50, // Padding top to move content down
-    paddingLeft: 10, // Padding left to align content to the left
+    backgroundColor: '#ffffff', 
+    paddingTop: 50, 
+    paddingLeft: 10, 
   },
   card: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 16,
-    marginBottom: 20, // Add margin bottom for spacing
+    marginBottom: 20, 
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 4, // Increased height of shadow offset
+      height: 4, 
     },
     shadowOpacity: 0.4,
     shadowRadius: 6,
     elevation: 5,
-    position: 'relative', // Make the card container position relative
+    position: 'relative',
   },
   textContainer: {
-    position: 'absolute', // Position the text container absolutely within the card
-    top: 16, // Adjust the position as needed
+    position: 'absolute',
+    top: 16, 
     left: 16,
   },
   vandaagText: {
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 20,
     marginLeft: 10,
-    marginTop: 10, // Adjusted marginTop for pushing the card down
+    marginTop: 10, 
   },
   newCardText: {
     color: '#fff',
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   dropdownItems: {
-    maxHeight: 150, // Adjust height as needed
+    maxHeight: 150, 
     paddingHorizontal: 16,
   },
   dropdownItem: {
