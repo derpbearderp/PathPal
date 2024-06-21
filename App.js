@@ -130,7 +130,7 @@ export default function App() {
               iconName = 'cellular';
             }
 
-            // You can return any component that you like here!
+            
             return <Icon name={iconName} size={size} color={color} />;
           },
         })}
